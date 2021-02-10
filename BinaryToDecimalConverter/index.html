@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div>
+        <header>
+            <h1>Binary To Decimal Converter</h1>
+        </header>
+        <div>
+            <div class="calc">
+                <label for="">Binary Input</label>
+                <input type="text" placeholder="Enter the Binary Digit" id="getInput"><br>
+                <label for="">Decimal Output</label>
+                <input type="text" id="getOutput" ><br>
+                <button onclick="binToDecConverter()">Convert</button>
+                <button onclick="decToBinReset()">Reset</button>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function binToDecConverter() {
+            var binInput = document.getElementById("getInput").value;
+            document.getElementById("getOutput").value = checkInput(binInput);
+        }
+
+        /* Method to compare whether input conforms to Binary values*/
+        var checkInput = function (input) {
+            if (/[^10]/g.test(input)) {
+                alert("Value entered is not in binary form!");
+            } else {
+                return convertToDecimal(input);
+            }
+        }
+
+        var convertToDecimal = function (binVal) {
+            var result = 0;
+            var n = binVal.length - 1;
+            for (i = 0; i < binVal.length; i++) {
+                var digit = binVal.charAt(i);
+                result = result + (digit * Math.pow(2, n));
+                n--;
+            }
+            return result;
+        }
+        
+        function decToBinReset() {
+            document.getElementById("getInput").value = "";
+            document.getElementById("getOutput").value = "";
+        }
+    </script>
+</body>
+
+</html>
